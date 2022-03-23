@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MVVM_Aplication</string>
+    <string name="field_is_required">Поле обязательно для заполнения</string>
+    <string name="passwords_do_not_match">Пароли не совпадают</string>
+</resources>

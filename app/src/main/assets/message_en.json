@@ -1,0 +1,12 @@
+{
+  "validation.password.message.error": "Invalid password. It must contain at least one: uppercase and lowercase letter, special symbol (#?!$%^&_=:+.<>{}[]|()/\\*), number, and has size 8 - 255 characters",
+  "validation.confirm.password.message.error": "Invalid password confirmftion. It cant be empty and must match password",
+  "validation.photo.message.error": "Invalid photo size. Max size is 512 KB",
+  "validation.firstname.message.error": "Invalid First name. Length must be 1- 64 symbols",
+  "validation.lastname.message.error": "Invalid Last name. Length must be 1- 64 symbols",
+  "validation.middlename.message.error": "Invalid Middle name. Length must be 1- 64 symbols",
+  "validation.sipaddress.message.error": "Invalid Login. Size must be 1 - 128 characters",
+  "validation.email.message.error": "Invalid Email. It must match pattern (example@gmail.com) and have max size of 128 characters",
+  "validation.login.message.error": "Invalid Login. It must be between 6 and 128 characters long",
+  "validation.phone.message.error": "Wrong number. The number must contain numbers, special characters (+ -) and be 3-15 characters long"
+}

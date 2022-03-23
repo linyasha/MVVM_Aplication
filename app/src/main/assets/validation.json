@@ -1,0 +1,39 @@
+{
+   "password":{
+      "reg_exp":"^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[#\\?!$%^&\\-_=:\\+\\.,<>\\{\\}\\[\\]\\|\\(\\)\\/\\*\\\\])[a-zA-Z\\d#\\?!$%^&\\-_=:\\+\\.,<>\\{\\}\\[\\]\\|\\(\\)\\/\\*\\\\]{8,255}$",
+      "error_code":"validation.password.message.error"
+   },
+   "confirm_password": {
+      "error_code":"validation.confirm.password.message.error"
+   },
+   "photo":{
+      "max_size":524288,
+      "error_code":"validation.photo.message.error"
+   },
+   "first_name":{
+      "reg_exp":"^[a-zA-Zа-яёА-ЯЁ0-9\\-\\!\\@\\#\\$\\%\\^\\&\\(\\)\\?\\=\\_\\+\\§\\±\\~\\`\\{\\}\\[\\]\\;\\:\\\"\\'\\|\\\\\\/\\<\\>\\,\\.\\ ]{1,64}$",
+      "error_code":"validation.firstname.message.error"
+   },
+   "user_name":{
+      "reg_exp":"^[a-zA-Zа-яёА-ЯЁ0-9\\-\\!\\@\\#\\$\\%\\^\\&\\(\\)\\?\\=\\_\\+\\§\\±\\~\\`\\{\\}\\[\\]\\;\\:\\\"\\'\\|\\\\\\/\\<\\>\\,\\.\\ ]{1,64}$",
+      "error_code":"validation.lastname.message.error"
+   },
+   "middle_name":{
+      "reg_exp":"^[a-zA-Zа-яёА-ЯЁ0-9\\-\\!\\@\\#\\$\\%\\^\\&\\(\\)\\?\\=\\_\\+\\§\\±\\~\\`\\{\\}\\[\\]\\;\\:\\\"\\'\\|\\\\\\/\\<\\>\\,\\.\\ ]{1,64}$",
+      "error_code":"validation.middlename.message.error"
+   },
+   "email":{
+      "reg_exp":"^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,8})$",
+      "max_size":128,
+      "error_code":"validation.email.message.error"
+   },
+   "login": {
+      "max_size": 128,
+      "min_size": 1,
+      "error_code": "validation.login.message.error"
+   },
+   "phone": {
+      "reg_exp": "^\\+?([\\-\\.\\(\\)]{0,2}\\d){3,15}$",
+      "error_code": "validation.phone.message.error"
+   }
+}
