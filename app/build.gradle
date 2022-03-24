@@ -73,4 +73,10 @@ dependencies {
     //Fragment
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
+    //Koin DI
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+
 }

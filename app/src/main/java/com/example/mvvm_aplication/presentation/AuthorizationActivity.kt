@@ -17,14 +17,13 @@ import com.example.mvvm_aplication.utils.hideKeyboard
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONObject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class AuthorizationActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
-    private val viewModel by viewModels<AuthorizationViewModel> {
-        AuthorizationViewModelFactory()
-    }
+    private val viewModel by viewModel<AuthorizationViewModel>()
 
     private val validationJson by lazy {
         JSONObject(getJsonFileFromAssets("validation.json"))
