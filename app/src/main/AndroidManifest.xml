@@ -10,8 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM_Aplication">
         <activity
-            android:name=".presentation.MainActivity"
-            android:exported="true">
+            android:name=".presentation.AuthorizationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,6 +2,7 @@ package com.example.mvvm_aplication.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import com.example.mvvm_aplication.R
 import com.example.mvvm_aplication.data.repository.UserRepositoryImpl
@@ -18,9 +19,12 @@ import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONObject
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class AuthorizationActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
+    private val viewModel by viewModels<AuthorizationViewModel> {
+        AuthorizationViewModelFactory()
+    }
 
     private val validationJson by lazy {
         JSONObject(getJsonFileFromAssets("validation.json"))
@@ -30,9 +34,6 @@ class MainActivity : AppCompatActivity() {
             "message_${if (Locale.getDefault().language == "ru") "ru" else "en"}.json")
         )
     }
-
-    private val loginUseCase = LoginUseCase(userRepository = UserRepositoryImpl(UserStorageImpl()))
-    private val registerUseCase = RegisterUseCase(userRepository = UserRepositoryImpl(UserStorageImpl()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             ?: return
         val password = getIfValid(binding!!.passwordInput, "password")
             ?: return
-        loginUseCase.execute(UserLoginInfo(login = login, password = password))
+        viewModel.login(UserLoginInfo(login = login, password = password))
     }
 
     private fun register() {
@@ -88,12 +89,11 @@ class MainActivity : AppCompatActivity() {
             ?: return
         val userName = getIfValid(binding!!.userNameRegisterLayout, "user_name")
             ?: return
-        registerUseCase.execute(
-            UserRegisterInfo(
-                login = login,
-                password = password,
-                email = email,
-                userName = userName))
+        viewModel.registration(UserRegisterInfo(
+            login = login,
+            password = password,
+            email = email,
+            userName = userName))
     }
 
     private fun getIfValid(inputLayout: TextInputLayout, jsonField: String): String? {
