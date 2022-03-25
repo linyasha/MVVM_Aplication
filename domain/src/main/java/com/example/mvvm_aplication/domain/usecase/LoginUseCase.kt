@@ -5,8 +5,6 @@ import com.example.mvvm_aplication.domain.repository.UserRepository
 
 class LoginUseCase(private val userRepository: UserRepository) {
 
-    fun execute(userLoginInfo: UserLoginInfo): Boolean {
-        userRepository.login(userLoginInfo)
-        return true
-    }
+    suspend fun execute(userLoginInfo: UserLoginInfo) = userRepository.login(userLoginInfo)
+
 }

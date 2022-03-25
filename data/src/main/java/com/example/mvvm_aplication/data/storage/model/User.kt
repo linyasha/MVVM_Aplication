@@ -8,8 +8,7 @@ import com.example.mvvm_aplication.domain.model.UserRegisterInfo
 
 @Entity(tableName = "users")
 data class User(
-    val login: String,
-    val email: String = "",
+    val email: String,
     val userName: String,
     val photoEtag: ByteArray = byteArrayOf(),
     val presenceId: Int? = 0,
@@ -24,7 +23,6 @@ data class User(
 
         other as User
 
-        if (login != other.login) return false
         if (email != other.email) return false
         if (userName != other.userName) return false
         if (!photoEtag.contentEquals(other.photoEtag)) return false
@@ -37,8 +35,7 @@ data class User(
     }
 
     override fun hashCode(): Int {
-        var result = login.hashCode()
-        result = 31 * result + email.hashCode()
+        var result = email.hashCode()
         result = 31 * result + userName.hashCode()
         result = 31 * result + photoEtag.contentHashCode()
         result = 31 * result + (presenceId ?: 0)
@@ -50,7 +47,6 @@ data class User(
 
     companion object {
         fun map(userRegisterInfo: UserRegisterInfo): User = User(
-            login = userRegisterInfo.login,
             email = userRegisterInfo.email,
             userName = userRegisterInfo.userName)
     }

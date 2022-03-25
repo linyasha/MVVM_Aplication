@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "472107750477",
+    "firebase_url": "https://mvvm-aplication-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mvvm-aplication",
+    "storage_bucket": "mvvm-aplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472107750477:android:f382238228cfbc048d3804",
+        "android_client_info": {
+          "package_name": "com.example.data"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472107750477-26cos0oeakh66udf9eer0po1m214r817.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjWW4_7Xc0Z2AhOCd6cDMiSeuE7d6ZWY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472107750477-26cos0oeakh66udf9eer0po1m214r817.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

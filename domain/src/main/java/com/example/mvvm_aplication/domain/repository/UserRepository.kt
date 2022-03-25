@@ -1,12 +1,13 @@
 package com.example.mvvm_aplication.domain.repository
 
+import com.example.mvvm_aplication.domain.model.Status
 import com.example.mvvm_aplication.domain.model.UserLoginInfo
 import com.example.mvvm_aplication.domain.model.UserRegisterInfo
 
 interface UserRepository {
-    fun login(userLoginInfo: UserLoginInfo)
+    suspend fun login(userLoginInfo: UserLoginInfo): Status
 
-    fun registration(userRegisterInfo: UserRegisterInfo)
+    suspend fun registration(userRegisterInfo: UserRegisterInfo): Status
 
     fun logout()
 }

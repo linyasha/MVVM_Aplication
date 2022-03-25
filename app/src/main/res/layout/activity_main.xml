@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.AuthorizationActivity">
+    tools:context=".presentation.authorization.AuthorizationActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_input"
@@ -54,11 +54,11 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_register_layout"
+        android:id="@+id/email_register_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="Login"
+        android:hint="Email"
         android:layout_marginTop="30dp"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintTop_toBottomOf="@id/login_button"
@@ -66,7 +66,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_register_text"
+            android:id="@+id/email_register_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textEmailAddress" />
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         app:layout_constraintVertical_bias="1"
-        app:layout_constraintTop_toBottomOf="@id/login_register_layout"
+        app:layout_constraintTop_toBottomOf="@id/email_register_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -112,32 +112,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/email_register_layout"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
-    android:hint="Email"
-    app:layout_constraintVertical_bias="1"
-    app:layout_constraintTop_toBottomOf="@id/repeat_password_register_layout"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_register_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textEmailAddress" />
-
-</com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userName_register_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="User Name"
         app:layout_constraintVertical_bias="1"
-        app:layout_constraintTop_toBottomOf="@id/email_register_layout"
+        app:layout_constraintTop_toBottomOf="@id/repeat_password_register_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
