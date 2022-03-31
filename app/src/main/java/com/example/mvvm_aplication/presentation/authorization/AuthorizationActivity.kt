@@ -1,11 +1,19 @@
 package com.example.mvvm_aplication.presentation.authorization
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.mvvm_aplication.R
 import com.example.mvvm_aplication.databinding.ActivityMainBinding
 import com.example.mvvm_aplication.domain.model.Status
@@ -14,10 +22,10 @@ import com.example.mvvm_aplication.domain.model.UserRegisterInfo
 import com.example.mvvm_aplication.presentation.common.ProgressDialog
 import com.example.mvvm_aplication.utils.getJsonFileFromAssets
 import com.example.mvvm_aplication.utils.hideKeyboard
+import com.example.mvvm_aplication.utils.getDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -45,6 +53,7 @@ class AuthorizationActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         initUi()
+        initViewModel()
     }
 
     override fun onStart() {
@@ -59,93 +68,103 @@ class AuthorizationActivity : AppCompatActivity() {
 
     private fun initUi() {
         binding?.let { it ->
-            setDoOnTextChanged(
-                listView = listOf(
-                    it.loginText to it.loginInput,
-                    it.passwordText to it.passwordInput,
-                    it.emailRegisterText to it.emailRegisterLayout,
-                    it.passwordRegisterText to it.passwordRegisterLayout,
-                    it.repeatPasswordRegisterText to it.repeatPasswordRegisterLayout,
-                    it.userNameRegisterText to it.userNameRegisterLayout)
-                )
-            it.loginButton.setOnClickListener { view ->
-                view.hideKeyboard()
-                login()
+            linkTextView(it.alreadyHaveAccount, getString(R.string.have_account))
+            it.signUp.setOnClickListener {
+                //TODO(Open register fragment)
             }
-            it.registerButton.setOnClickListener { view ->
-                view.hideKeyboard()
-                register()
+            it.google.setOnClickListener {
+                //TODO(Add register by Google)
             }
-            it.emailRegisterText.setText("arturlynko@gmail.com")
-            it.passwordRegisterText.setText("Aa!11111")
-            it.repeatPasswordRegisterText.setText("Aa!11111")
-            it.userNameRegisterText.setText("Loghdfd")
+            it.facebook.setOnClickListener {
+                //TODO(Add register by Facebook)
+            }
+            it.apple.setOnClickListener {
+                //TODO(Add register by Apple)
+            }
+//            setDoOnTextChanged(
+//                listView = listOf(
+//                    it.loginText to it.loginInput,
+//                    it.passwordText to it.passwordInput,
+//                    it.emailRegisterText to it.emailRegisterLayout,
+//                    it.passwordRegisterText to it.passwordRegisterLayout,
+//                    it.repeatPasswordRegisterText to it.repeatPasswordRegisterLayout,
+//                    it.userNameRegisterText to it.userNameRegisterLayout)
+//                )
+//            it.loginButton.setOnClickListener { view ->
+//                view.hideKeyboard()
+//                login()
+//            }
+//            it.registerButton.setOnClickListener { view ->
+//                view.hideKeyboard()
+//                register()
+//            }
+//            it.emailRegisterText.setText("arturlynko@gmail.com")
+//            it.passwordRegisterText.setText("Aa!11111")
+//            it.repeatPasswordRegisterText.setText("Aa!11111")
+//            it.userNameRegisterText.setText("Loghdfd")
         }
 
     }
 
-    private fun login() {
-        val login = getIfValid(binding!!.loginInput, "login")
-            ?: return
-        val password = getIfValid(binding!!.passwordInput, "password")
-            ?: return
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.login(UserLoginInfo(email = login,
-                password = password)).collect { status ->
-                when (status) {
-                    is Status.Success -> {
-                        withContext(Dispatchers.Main) {
-                            showProgress(false)
+    private fun initViewModel() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.authStatus.collect { status ->
+                    when (status) {
+                        is Status.Success -> {
+                            //TODO(Перебросить на основной экран)
+                            withContext(Dispatchers.Main) {
+                                showProgress(false)
+                            }
                         }
-                    }
-                    is Status.Loading -> {
-                        withContext(Dispatchers.Main) {
-                            showProgress(true)
+                        is Status.Loading -> {
+                            withContext(Dispatchers.Main) {
+                                showProgress(true)
+                            }
                         }
-                    }
-                    is Status.Failure -> {
-                        //TODO("Show error dialog")
+                        is Status.Failure -> {
+                            withContext(Dispatchers.Main) {
+                                showProgress(false)
+                                this@AuthorizationActivity.getDialog(
+                                    title = getString(R.string.error),
+                                    message = status.errorMessage ?: getString(R.string.request_error_try_again),
+                                    negativeButton = getString(R.string.cancel),
+                                    background = ContextCompat.getDrawable(this@AuthorizationActivity, R.drawable.background_rounded_dialog)
+                                ).show()
+                            }
+                        }
+                        else -> {}
                     }
                 }
             }
         }
     }
 
+    private fun login() {
+//        val login = getIfValid(binding!!.loginInput, "email")
+//            ?: return
+//        val password = getIfValid(binding!!.passwordInput, "password")
+//            ?: return
+//
+//        viewModel.login(UserLoginInfo(email = login, password = password))
+
+    }
+
     private fun register() {
-        val email = getIfValid(binding!!.emailRegisterLayout, "email")
-            ?: return
-        val password = getIfValid(binding!!.passwordRegisterLayout, "password")
-            ?: return
-        val confirmPassword = getIfValid(binding!!.repeatPasswordRegisterLayout, "confirm_password")
-            ?: return
-        if (password != confirmPassword) {
-            binding!!.repeatPasswordRegisterLayout.error = getString(R.string.passwords_do_not_match)
-            return
-        }
-        val userName = getIfValid(binding!!.userNameRegisterLayout, "user_name")
-            ?: return
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.registration(UserRegisterInfo(
-                email = email,
-                password = password,
-                userName = userName)).collect { status ->
-                  when (status) {
-                      is Status.Success -> {
-                          withContext(Dispatchers.Main) {
-                              showProgress(false)
-                          }
-                      }
-                      is Status.Loading -> {
-                          withContext(Dispatchers.Main) {
-                              showProgress(true)
-                          }
-                      }
-                      is Status.Failure -> {
-                        //TODO("Show error dialog")
-                      }
-                  }
-            }
-        }
+//        val email = getIfValid(binding!!.emailRegisterLayout, "email")
+//            ?: return
+//        val password = getIfValid(binding!!.passwordRegisterLayout, "password")
+//            ?: return
+//        val confirmPassword = getIfValid(binding!!.repeatPasswordRegisterLayout, "confirm_password")
+//            ?: return
+//        if (password != confirmPassword) {
+//            binding!!.repeatPasswordRegisterLayout.error = getString(R.string.passwords_do_not_match)
+//            return
+//        }
+//        val userName = getIfValid(binding!!.userNameRegisterLayout, "user_name")
+//            ?: return
+//
+//        viewModel.registration(UserRegisterInfo(email = email, password = password, userName = userName))
     }
 
     private fun getIfValid(inputLayout: TextInputLayout, jsonField: String): String? {
@@ -164,6 +183,20 @@ class AuthorizationActivity : AppCompatActivity() {
                 null
             }
         }
+    }
+
+    private fun linkTextView(view: TextView, text: String) {
+        val login = getString(R.string.login)
+        val spanTxt = SpannableStringBuilder(text)
+            .append(" ")
+            .append(login)
+        spanTxt.setSpan(object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                //TODO(Open login fragment)
+            }
+        }, spanTxt.length - login.length, spanTxt.length, 0)
+        view.movementMethod = LinkMovementMethod.getInstance()
+        view.setText(spanTxt, TextView.BufferType.SPANNABLE)
     }
 
     private fun setDoOnTextChanged(listView: List<Pair<TextInputEditText, TextInputLayout>>) {

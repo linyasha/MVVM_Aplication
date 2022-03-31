@@ -2,4 +2,13 @@
     <string name="app_name">MVVM_Aplication</string>
     <string name="field_is_required">Field is required</string>
     <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="error">Error</string>
+    <string name="cancel">Cancel</string>
+    <string name="request_error_try_again">There was an error when sending the request. Please try again later</string>
+    <string name="second_app_name" translatable="false">GAMEIX</string>
+    <string name="description_app">The best of the gaming world</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="have_account">I already have an account?</string>
+    <string name="login">Login</string>
+    <string name="sign_up_with">Or Sign up with</string>
 </resources>

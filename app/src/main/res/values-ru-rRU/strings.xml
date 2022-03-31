@@ -3,4 +3,12 @@
     <string name="app_name">MVVM_Aplication</string>
     <string name="field_is_required">Поле обязательно для заполнения</string>
     <string name="passwords_do_not_match">Пароли не совпадают</string>
+    <string name="error">Ошибка</string>
+    <string name="cancel">Отмена</string>
+    <string name="request_error_try_again">Произошла ошибка при отправке запроса. Пожалуйста, повторите попытку позже</string>
+    <string name="description_app">Лучшее из игрового мира</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="have_account">У вас уже есть аккаунт?</string>
+    <string name="login">Логин</string>
+    <string name="sign_up_with">Или авторизуйтесь через</string>
 </resources>
