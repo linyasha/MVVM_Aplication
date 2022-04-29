@@ -7,6 +7,6 @@ fun networkResultToStatus(result: NetworkResult): Status {
     return if (result.success) {
         Status.Success
     } else {
-        Status.Failure(result.errorMessage)
+        Status.Failure(result.throwable)
     }
 }

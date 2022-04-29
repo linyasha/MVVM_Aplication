@@ -11,4 +11,15 @@
     <string name="have_account">У вас уже есть аккаунт?</string>
     <string name="login">Логин</string>
     <string name="sign_up_with">Или авторизуйтесь через</string>
+    <string name="welcome_back">С возвращением!</string>
+    <string name="please_enter_details">Пожалуйста, введите свои данные</string>
+    <string name="lets_get_started">Давайте начнем</string>
+    <string name="latest_games">Самые свежие игры и \nжанры здесь</string>
+    <string name="password">Пароль</string>
+    <string name="full_name">Имя</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="i_agree">Я согласен с</string>
+    <string name="terms_and_services">Условиями эксплуатации</string>
+    <string name="and">и</string>
+    <string name="privacy_policy">Политикой конфиденциальности</string>
 </resources>

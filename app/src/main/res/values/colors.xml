@@ -11,4 +11,6 @@
     <color name="light_gray">#92929D</color>
     <color name="purple_light">#12CDD9</color>
     <color name="primary_soft">#252836</color>
+    <color name="primary_blue_accent">#12CDD9</color>
+    <color name="dark_black">#1F1D2B</color>
 </resources>

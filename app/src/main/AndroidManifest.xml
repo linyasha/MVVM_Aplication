@@ -16,6 +16,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".presentation.keepAlive.KeepAliveActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".presentation.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
